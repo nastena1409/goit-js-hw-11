@@ -19,19 +19,12 @@ hideLoadMoreBtn();
 
 function onSubmit(e) {
     e.preventDefault();
-    clearGallery();
+    //console.dir(e.currentTarget);
+    //clearGallery();
+    const data = new FormData(e.currentTarget)
+    const search = data.get('searchQuery')
+    console.log(search)
 
-    const searchQuery = e.target.searchQuery.value;
-    console.log(searchQuery)
-
-    if (!searchQuery) {
-        return;
-    }
-
-    
-    //getImages(searchQuery)
-      //  .then(checkData)
-      //  .catch(error)
     
 }
 
