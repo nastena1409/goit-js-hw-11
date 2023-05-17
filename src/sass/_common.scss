@@ -1,1 +1,23 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+
+body {
+    margin: 10;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    cursor: pointer;
+}
+
+.is-hidden {
+    display: none;
+}
