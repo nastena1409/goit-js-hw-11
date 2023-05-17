@@ -22,8 +22,8 @@ function onSubmit(e) {
     //console.dir(e.currentTarget);
     //clearGallery();
     const data = new FormData(e.currentTarget)
-    const search = data.get('searchQuery').trim()
-    console.log(search)
+    const searchQuery = data.get('searchQuery').trim()
+    console.log(searchQuery)
 
     
 }
