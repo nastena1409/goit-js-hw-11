@@ -24,6 +24,10 @@ function onSubmit(e) {
     const searchQuery = e.target.searchQuery.value;
     console.log(searchQuery)
 
+    if (!searchQuery) {
+        return;
+    }
+
     
     //getImages(searchQuery)
       //  .then(checkData)
