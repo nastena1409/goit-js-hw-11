@@ -24,7 +24,7 @@ async function onSubmit(e) {
     const data = new FormData(e.currentTarget)
     const search = data.get('searchQuery').trim()
     console.log(search)
-    pageGroupNumber += 1;
+    pageGroupNumber = 1;
 
     try {
         const data = await getImages(search);
