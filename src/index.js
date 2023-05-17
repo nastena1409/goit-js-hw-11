@@ -17,14 +17,22 @@ const totaPages = 500 / PER_PAGE;
 searchForm.addEventListener('submit', onSubmit);
 hideLoadMoreBtn();
 
-function onSubmit(e) {
+async function onSubmit(e) {
     e.preventDefault();
     //console.dir(e.currentTarget);
     //clearGallery();
     const data = new FormData(e.currentTarget)
-    const searchQuery = data.get('searchQuery').trim()
-    console.log(searchQuery)
+    const search = data.get('searchQuery').trim()
+    console.log(search)
+    pageGroupNumber += 1;
 
+    try {
+        const data = await getImages(search);
+        console.log(data);
+    }
+    catch (error) {
+        console.log(error)
+    }
     
 }
 

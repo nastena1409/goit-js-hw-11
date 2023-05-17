@@ -16,12 +16,11 @@ async function getImages(searchQuery) {
         page: pageGroupNumber,
         per_page: PER_PAGE,
     });
-    const response = await axios.get(`${BASE_URL}?${searchParams}`);
-    const images = response.json();
-
-    return images;
+    const {data} = await axios.get(`${BASE_URL}?${searchParams}`);
+    
+    return data;
 }
-            
+        
        
 export { getImages };
 
