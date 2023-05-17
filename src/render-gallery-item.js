@@ -6,6 +6,7 @@ function renderGalleryItem(images) {
                 largeImageURL,
                 tags,
                 likes,
+                views,
                 comments,
                 downloads
             }) => {
@@ -13,6 +14,7 @@ function renderGalleryItem(images) {
         <div class="photo-card">
         <a class="gallery__link" href="${largeImageURL}">
           <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+        </a>  
           <div class="info">
             <p class="info-item">
                 <b>Likes</b>${likes}
