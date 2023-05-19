@@ -1,5 +1,5 @@
-function renderGalleryItem(images) {
-    return images
+function renderGallery(gallery) {
+    return gallery
         .map(
             ({
                 webformatURL,
@@ -28,10 +28,11 @@ function renderGalleryItem(images) {
             <p class="info-item">
                 <b>Downloads</b>${downloads}
             </p>
-        </div>`}).join("")
+        </div>`}).join("");
+    
 }  
   
-export { renderGalleryItem };
+export { renderGallery };
 
 
 
