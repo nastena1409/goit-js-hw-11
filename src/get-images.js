@@ -12,7 +12,7 @@ async function getImages(searchQuery, pageGroupNumber) {
         orientation: 'horizontal',
         safesearch: 'true',
         page: pageGroupNumber,
-        per_page: 3,
+        per_page: 40,
     });
     const { data } = await axios.get(`${BASE_URL}?${searchParams}`);
     

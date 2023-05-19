@@ -1,6 +1,5 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from "simplelightbox";
-// Додатковий імпорт стилів
 import "simplelightbox/dist/simple-lightbox.min.css";
 import { getImages } from './get-images';
 import { renderGallery } from './render-gallery';
@@ -12,12 +11,13 @@ const galleryList = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
 
 let pageGroupNumber = 1;
-let perPage = 3;
+let perPage = 40;
 let search = '';
 
 loadMoreBtn.setAttribute('hidden', true);
 
 searchForm.addEventListener('submit', onSubmit);
+            
 
 async function onSubmit(e) {
     e.preventDefault();
@@ -56,7 +56,7 @@ async function onSubmit(e) {
     catch (error) {
         console.log(error.message);
     }
-}    
+};
 
 loadMoreBtn.addEventListener('click', onloadMoreBtn);
 async function onloadMoreBtn() {
