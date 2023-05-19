@@ -1,5 +1,7 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
+import SimpleLightbox from "simplelightbox";
+// Додатковий імпорт стилів
+import "simplelightbox/dist/simple-lightbox.min.css";
 import { getImages } from './get-images';
 import { renderGallery } from './render-gallery';
 
@@ -11,7 +13,6 @@ const loadMoreBtn = document.querySelector('.load-more');
 
 let pageGroupNumber = 1;
 let perPage = 3;
-//const totalPages = 0;
 let search = '';
 
 loadMoreBtn.setAttribute('hidden', true);
@@ -35,7 +36,7 @@ async function onSubmit(e) {
         console.log(data);
         const { total, totalHits, hits } = data;
 
-        pageGroupNumber = 1;
+        pageGroupNumber += 1;
         
         if (totalHits === 0) {
             Notify.failure("Sorry, there are no images matching your search query. Please try again.");
@@ -43,7 +44,7 @@ async function onSubmit(e) {
 
             return;
 
-        } if (pageGroupNumber === 1) {
+        } if (pageGroupNumber >= 1) {
             Notify.success(`Hooray! We found ${totalHits} images.`);
         }        
         
@@ -64,19 +65,16 @@ async function onloadMoreBtn() {
         const data = await getImages(search, pageGroupNumber);
         const { total, totalHits, hits } = data;
         //console.log(total);
-        
-        
+
             if (pageGroupNumber > Math.ceil(totalHits / perPage)) {
                 Notify.failure("We're sorry, but you've reached the end of search results.");
                 loadMoreBtn.setAttribute('hidden', true);
 
                 return;
-
-            } else {
+            } else { 
                 galleryList.insertAdjacentHTML('beforeend', renderGallery(hits));
             }
-            
-          pageGroupNumber += 1;
+        pageGroupNumber += 1;
     }
     catch (error) {
         console.log(error.message);
