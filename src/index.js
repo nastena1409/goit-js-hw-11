@@ -61,13 +61,13 @@ async function onSubmit(e) {
 
 loadMoreBtn.addEventListener('click', onloadMoreBtn);
 async function onloadMoreBtn() {
-       
+   
     try {
         const data = await getImages(search);
         const { total, totalHits, hits } = data;
-        console.log(total);
+        //console.log(total);
         page += 1;
-
+        
             if (page > Math.ceil(totalHits / perPage)) {
                 Notify.failure("We're sorry, but you've reached the end of search results.");
                 loadMoreBtn.setAttribute('hidden', true);
@@ -76,6 +76,7 @@ async function onloadMoreBtn() {
 
             } else {
                 galleryList.insertAdjacentHTML('beforeend', renderGallery(hits));
+                
             }
         
     }
