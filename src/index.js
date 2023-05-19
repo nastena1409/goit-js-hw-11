@@ -1,8 +1,14 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 import { getImages } from './get-images';
 import { renderGallery } from './render-gallery';
+
+const lightbox = new SimpleLightbox('.gallery a',
+        {
+            captionDelay: 250,
+            captionsData: "alt",
+        });
 
 
 const searchForm = document.querySelector('#search-form');
@@ -17,7 +23,6 @@ let search = '';
 loadMoreBtn.setAttribute('hidden', true);
 
 searchForm.addEventListener('submit', onSubmit);
-            
 
 async function onSubmit(e) {
     e.preventDefault();
@@ -50,7 +55,7 @@ async function onSubmit(e) {
         
         galleryList.innerHTML = renderGallery(hits);
         loadMoreBtn.removeAttribute('hidden');
-
+        lightbox.refresh();
         
     }
     catch (error) {
@@ -73,13 +78,16 @@ async function onloadMoreBtn() {
                 return;
             } else { 
                 galleryList.insertAdjacentHTML('beforeend', renderGallery(hits));
+                lightbox.refresh();
             }
         pageGroupNumber += 1;
+        
     }
     catch (error) {
         console.log(error.message);
     }
-}    
+}   
+
 function clearGallery() {   
     galleryList.innerHTML = ''; 
 }
