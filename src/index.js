@@ -3,17 +3,13 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { getImages } from './get-images';
 import { renderGallery } from './render-gallery';
 
-//let PER_PAGE = 3;
-//let search = '';
-//let totalPages = 0;
-//let pageGroup = 1;
 
 const searchForm = document.querySelector('#search-form');
 const galleryList = document.querySelector('.gallery');
 //console.log(galleryList)
 const loadMoreBtn = document.querySelector('.load-more');
 
-let page = 1;
+let pageGroupNumber = 1;
 let perPage = 3;
 //const totalPages = 0;
 let search = '';
@@ -35,11 +31,11 @@ async function onSubmit(e) {
         searchForm.reset()
  
     try {
-        const data = await getImages(search);
+        const data = await getImages(search, pageGroupNumber);
         console.log(data);
         const { total, totalHits, hits } = data;
-        
-        page = 1;
+
+        pageGroupNumber = 1;
         
         if (totalHits === 0) {
             Notify.failure("Sorry, there are no images matching your search query. Please try again.");
@@ -47,12 +43,14 @@ async function onSubmit(e) {
 
             return;
 
-        } if (page === 1) {
+        } if (pageGroupNumber === 1) {
             Notify.success(`Hooray! We found ${totalHits} images.`);
         }        
         
         galleryList.innerHTML = renderGallery(hits);
         loadMoreBtn.removeAttribute('hidden');
+
+        
     }
     catch (error) {
         console.log(error.message);
@@ -63,12 +61,12 @@ loadMoreBtn.addEventListener('click', onloadMoreBtn);
 async function onloadMoreBtn() {
    
     try {
-        const data = await getImages(search);
+        const data = await getImages(search, pageGroupNumber);
         const { total, totalHits, hits } = data;
         //console.log(total);
-        page += 1;
         
-            if (page > Math.ceil(totalHits / perPage)) {
+        
+            if (pageGroupNumber > Math.ceil(totalHits / perPage)) {
                 Notify.failure("We're sorry, but you've reached the end of search results.");
                 loadMoreBtn.setAttribute('hidden', true);
 
@@ -76,9 +74,9 @@ async function onloadMoreBtn() {
 
             } else {
                 galleryList.insertAdjacentHTML('beforeend', renderGallery(hits));
-                
             }
-        
+            
+          pageGroupNumber += 1;
     }
     catch (error) {
         console.log(error.message);
