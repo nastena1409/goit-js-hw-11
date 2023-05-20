@@ -3,7 +3,23 @@
     flex-direction: row;
     align-items: center;
     background-color: rgb(236, 95, 19);
-    height: 50px;
+    height: 70px;
     justify-content: center;
     gap: 7px;
+}
+
+input {
+    height: 35px;
+    border-radius: 4px;   
+}
+
+button {
+    cursor: pointer;
+    background-color: black;
+    color: rgb(236, 95, 19);
+    border: 2px solid black;
+    border-radius: 4px;
+    height: 35px;
+    width: 120px;
+    font-size: 20px;
 }

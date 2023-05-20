@@ -1,12 +1,6 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
 
-body {
-    margin: 10;
-}
 
-ul {
-    list-style: none;
-}
 
 img {
     display: block;
@@ -14,11 +8,5 @@ img {
     height: auto;
 }
 
-button {
-    cursor: pointer;
-    background-color: black;
-    color: rgb(236, 95, 19);
-    border: 2px solid black;
-    border-radius: 4px;
-}
+
 
