@@ -78,7 +78,7 @@ function onSubmit(e) {
 };    
 
 loadMoreBtn.addEventListener('click', onloadMoreBtn);
-async function onloadMoreBtn() {
+function onloadMoreBtn() {
 
     pageGroupNumber += 1;
     addPageGroup();
