@@ -35,6 +35,7 @@ function onSubmit(e) {
 
     pageGroupNumber = 1;
     clearGallery();
+    hideLoadBtn();
     searchForm.reset(); 
     addPageGroup();
 
@@ -57,9 +58,8 @@ function onSubmit(e) {
 
             }  if (pageGroupNumber === 1) {
                 Notify.success(`Hooray! We found ${totalHits} images.`); 
-        }     
-            
-        if (pageGroupNumber < totalPages) {
+                
+        }     if (pageGroupNumber < totalPages) {
             showLoadBtn();
             onScroll();
 
