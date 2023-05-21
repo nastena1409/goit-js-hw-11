@@ -110,3 +110,5 @@ function showLoadBtn() {
 function hideLoadBtn() {
    loadMoreBtn.setAttribute('hidden', true); 
 }
+
+
